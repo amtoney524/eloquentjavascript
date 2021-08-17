@@ -89,4 +89,32 @@ console.log(object2.value); // 15, reassigned through operation on object1
 // while the binding of a const cant change, the properties of its referenced object can
 const score = {visitors: 1, home: 0}; 
 score.visitors = 2;
-console.log(score.visitors);
+console.log(score.visitors, "\n");
+
+/*
+  Shift and Unshift:
+    Shift: removes item from the front of an array
+    Unshift: places new item at the front of an array
+*/
+
+let todoList = [];
+
+function remember(task) {
+  todoList.push(task);
+}
+
+function getTask() {
+  return todoList.shift();
+}
+
+function rememberUrgently(task) {
+  todoList.unshift(task);
+}
+
+remember("feed cats");
+remember("study");
+rememberUrgently("brush teeth");
+
+console.log(todoList);
+console.log(getTask());
+console.log(todoList);
