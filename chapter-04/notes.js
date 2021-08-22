@@ -117,4 +117,109 @@ rememberUrgently("brush teeth");
 
 console.log(todoList);
 console.log(getTask());
-console.log(todoList);
+console.log(todoList, "\n");
+
+/*
+  Array methods indexOf and lastIndexOf allow user to search for element
+  from beginning or end of array
+
+  Both indexOf and lastIndexOf take an optional second argument which indicates
+  where to start searching (exclusive)
+*/
+
+const elements = [1, 2, 1, 1, 3, 5, 1];
+console.log(elements.indexOf(1)); // 0
+console.log(elements.lastIndexOf(1)); // 6
+console.log(elements.indexOf(1, 0)); // 1
+console.log(elements.lastIndexOf(1, 5), "\n"); // 3
+
+/*
+  The slice array method takes a start index (inclusive) and end index (exclusive)
+  Slice returns the elements between both indexes
+
+  Note: when the end index is not given, slice will return all elements from the starting index
+*/
+
+console.log(elements.slice(1, 4)); // [2, 1, 1]
+console.log(elements.slice(1)); // [2, 1, 1, 3, 5, 1]
+
+/*
+  The concat method allows you to join arrays together
+*/
+
+console.log(elements.slice(0, 2).concat(elements.slice(5, 7)), "\n"); // [1, 2, 5, 1]
+
+/*
+  Strings and their properties
+    - Strings, booleans, and numbers are immutable and are not objects
+    - However, these types still have built-in properties
+
+  .slice and .indexOf resemble the array methods with the same names
+    - one difference is that string's index of can search for more than 1 character
+
+  .trim removes whitespace (space, newlines, tabs) from the start and end of the string
+  .padStart takes a desired length and padding character as arguments
+  .split splits a string on every occurence and .join can join it again
+  .repeat returns a new string consisting of the original string strung together n times
+*/
+
+const sentence = "The quick brown fox jumped over the lazy dog.";
+console.log(sentence.slice(4, 9)); //"quick"
+console.log(sentence.indexOf("b")); // 10
+console.log(sentence.indexOf("fox")); //16
+console.log("1".padStart(3, "0")); // "001"
+console.log(sentence.split(" ").join("-")); // "The-quick-brown-f..."
+console.log((sentence + " ").repeat(3).trim(), "\n");
+
+/*
+  The Rest Parameter ...
+  The Rest Parameter ... gets bound to an array containing all further arguments
+  ... spreads out the array into a function call, passing its elements as separate arguments
+*/
+const primes = [2, 3, 5, 7, 11, 13, 17]
+console.log(Math.max(...primes)); // 17
+console.log(...primes); // 2 3 5 7 11 13 17
+console.log(Math.max(31, ...primes, 29), "\n"); // 31
+
+/*
+  The Math Object
+  The Math Object creates a namespace for number-related utility functions
+  By having the functions named as methods of Math, this saves useful binding names like max and min for us
+
+  Math.min, Math.max, Math.sqrt, Math.cos, Math.sin, Math.tan, Math.acos, Math.asin, Math.atan
+  Math.random returns a random number between 0 (inclusive) and 1 (exclusive)
+  Math.floor rounds down, Math.ceil rounds up, Math.round rounds to the nearest whole number
+*/
+
+console.log(Math.random() * 3) // generate a random number between 0 and 3 exclusive
+console.log(Math.floor(Math.random() * 3), "\n"); // random whole number between 0 and 3 exclusive
+
+/*
+  Destructuring
+  - Allows you to bind elements of an array
+  - Allows you to access properties of an object
+*/
+
+function printCoordinates([x, y]) {
+  console.log(`x: ${x} y: ${y}`);
+}
+
+let {name} = {name: "Martha", age: 16};
+
+printCoordinates([10, 4]);
+console.log(name, "\n");
+
+/* 
+  JSON = JavaScript Object Notation, a popular serializable format for data
+    - ALL property names must be surrounded by DOUBLE quotes
+    - NO comments are allowed
+    - Simple expressions only, NO computation is allowed
+
+  JSON.stringify() takes a JS value and returns it as a JSON encoded string
+  JSON.parse() takes a JSON encoded string and converts it to a JS value
+*/
+
+let entry = {date: "20210822", entry: "Today I went to the..."};
+
+console.log(JSON.stringify(entry));
+console.log(JSON.parse(JSON.stringify(entry)));
